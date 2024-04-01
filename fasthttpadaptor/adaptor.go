@@ -8,6 +8,7 @@ import (
 	"net"
 	"net/http"
 	"sync"
+	"strings"
 
 	"github.com/valyala/fasthttp"
 )
@@ -70,6 +71,9 @@ func NewFastHTTPHandler(h http.Handler) fasthttp.RequestHandler {
 			}
 
 			for _, v := range vv {
+				if strings.ToLower(k)=="connection" && strings.ToLower(v)=="close"{
+					continue
+				}
 				ctx.Response.Header.Add(k, v)
 			}
 		}
