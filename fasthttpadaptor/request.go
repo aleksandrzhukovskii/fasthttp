@@ -58,7 +58,7 @@ func ConvertRequest(ctx *fasthttp.RequestCtx, r *http.Request, forServer bool) e
 		case "Transfer-Encoding":
 			r.TransferEncoding = append(r.TransferEncoding, sv)
 		default:
-			r.Header.Set(sk, sv)
+			r.Header.Add(sk, sv)
 		}
 	})
 
